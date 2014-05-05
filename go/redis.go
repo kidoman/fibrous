@@ -4,22 +4,20 @@ import (
 	"time"
 
 	"github.com/garyburd/redigo/redis"
+	"github.com/youtube/vitess/go/pools"
 )
 
-func newPool(server string) *redis.Pool {
-	return &redis.Pool{
-		MaxIdle:     3,
-		IdleTimeout: 240 * time.Second,
-		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", server)
-			if err != nil {
-				return nil, err
-			}
-			return c, err
-		},
-		TestOnBorrow: func(c redis.Conn, _ time.Time) error {
-			_, err := c.Do("PING")
-			return err
-		},
-	}
+type resourceConn struct {
+	redis.Conn
+}
+
+func (r *resourceConn) Close() {
+	r.Conn.Close()
+}
+
+func newPool(server string) *pools.ResourcePool {
+	return pools.NewResourcePool(func() (pools.Resource, error) {
+		c, err := redis.Dial("tcp", server)
+		return &resourceConn{c}, err
+	}, 3, 20, time.Minute)
 }

@@ -1,21 +1,41 @@
 package main
 
-import "github.com/garyburd/redigo/redis"
+import (
+	"github.com/garyburd/redigo/redis"
+	"github.com/youtube/vitess/go/pools"
+)
 
 type DB struct {
-	p *redis.Pool
+	p *pools.ResourcePool
 }
 
-func newDB(p *redis.Pool) *DB {
+func newDB(p *pools.ResourcePool) *DB {
 	return &DB{p}
 }
 
-func (db *DB) conn() redis.Conn {
-	return db.p.Get()
+type pooledConn struct {
+	*resourceConn
+	p *pools.ResourcePool
+}
+
+func (wc *pooledConn) Close() {
+	wc.p.Put(wc.resourceConn)
+}
+
+func (db *DB) conn() (*pooledConn, error) {
+	r, err := db.p.Get()
+	if err != nil {
+		return nil, err
+	}
+	c := r.(*resourceConn)
+	return &pooledConn{c, db.p}, nil
 }
 
 func (db *DB) LoadUser(id int) (*User, error) {
-	c := db.conn()
+	c, err := db.conn()
+	if err != nil {
+		return nil, err
+	}
 	defer c.Close()
 
 	name, err := redis.String(c.Do("GET", UserKey(id)))
@@ -27,13 +47,16 @@ func (db *DB) LoadUser(id int) (*User, error) {
 }
 
 func (db *DB) SaveUser(u *User) error {
-	c := db.conn()
+	c, err := db.conn()
+	if err != nil {
+		return err
+	}
 	defer c.Close()
 
-	_, err := c.Do("SET", u.Key(), u.Name)
+	_, err = c.Do("SET", u.Key(), u.Name)
 	return err
 }
 
-func (db *DB) Close() error {
-	return db.p.Close()
+func (db *DB) Close() {
+	db.p.Close()
 }

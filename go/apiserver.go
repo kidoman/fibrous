@@ -62,6 +62,6 @@ func (a *ApiServer) getUser(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (a *ApiServer) Close() error {
-	return a.db.Close()
+func (a *ApiServer) Close() {
+	a.db.Close()
 }
