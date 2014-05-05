@@ -17,13 +17,12 @@ func main() {
 
 	db := newDB(pool)
 	defer db.Close()
+	m.Map(db)
 
 	m.Use(func(c martini.Context, w http.ResponseWriter) {
 		c.MapTo(encoder.JsonEncoder{}, (*encoder.Encoder)(nil))
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	})
-
-	m.Map(db)
 
 	m.Post("/users", binding.Bind(User{}), func(db *DB, u User) (int, string) {
 		if err := db.SaveUser(&u); err != nil {
