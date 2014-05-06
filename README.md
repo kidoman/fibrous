@@ -6,6 +6,7 @@ Currently implemented:
 * node.js
 * Go
 * Python
+* Ruby
 
 Soon:
 * Scala
@@ -34,6 +35,10 @@ CD into the ```python``` folder and run either ```./start_twisted.sh``` or ```./
 
 **Note:** If you are on Mac OS X, and the compile fails because of ```cc```, run the command with prefix ```CC=gcc-4.2```. You will need to install ```gcc-4.2``` by doing ```brew install apple-gcc42```.
 
+## Ruby
+
+CD into the ```ruby``` folder and run ```./start_sinatra.sh``` to start the server to benchmark.
+
 ## Running the benchmark
 
 Run ```./bench.sh``` from the root of the repository, and wait for ```boom``` to complete the run.
@@ -61,6 +66,7 @@ All the following tests are run on the same hardware. The Redis instance is loca
 * nodejs (promises) 4963 req/s
 * CPython (tornado) 2739 req/s
 * CPython (twisted) 2716 req/s
+* Ruby2.1.1 (sinatra) 2403 req/s
 
 ## Detailed Results
 
@@ -171,6 +177,22 @@ Summary:
   Requests/sec: 2739.4510
   Total Data Received:  3100000 bytes.
   Response Size per Request:  31 bytes.
+
+Status code distribution:
+  [200] 100000 responses
+```
+
+### Ruby 2.1.1 (sinatra)
+
+```
+Summary:
+  Total:  41.6067 secs.
+  Slowest:  0.1194 secs.
+  Fastest:  0.0184 secs.
+  Average:  0.0416 secs.
+  Requests/sec: 2403.4595
+  Total Data Received:  2800000 bytes.
+  Response Size per Request:  28 bytes.
 
 Status code distribution:
   [200] 100000 responses
