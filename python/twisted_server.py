@@ -26,7 +26,7 @@ class UserResource(Resource):
         return user.to_json()
 
     def render_POST(self, request):
-        user = User.fromRequest(request.content)
+        user = User.fromRequest(request.content.getvalue())
         user.save()
         return "OK"
 

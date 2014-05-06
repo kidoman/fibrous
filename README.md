@@ -5,9 +5,9 @@ Comparing I/O (async or otherwise) code in various languages/frameworks/platform
 Currently implemented:
 * node.js
 * Go
+* Python
 
 Soon:
-* Python
 * Scala
 * Java
 * Clojure
@@ -30,7 +30,7 @@ CD into the ```nodejs``` folder and run either ```./start_callback.sh```, ```./s
 
 ## Python
 
-CD into the ```python``` folder and run ```./start_twisted.sh``` to start the server to benchmark.
+CD into the ```python``` folder and run either ```./start_twisted.sh``` or ```./start_tornado.sh``` to start the server to benchmark.
 
 **Note:** If you are on Mac OS X, and the compile fails because of ```cc```, run the command with prefix ```CC=gcc-4.2```. You will need to install ```gcc-4.2``` by doing ```brew install apple-gcc42```.
 

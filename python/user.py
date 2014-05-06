@@ -10,7 +10,7 @@ class User:
 
     @classmethod
     def fromRequest(cls, content):
-        user_map = json.loads(content.getvalue())
+        user_map = json.loads(content)
         return User(user_map["id"], user_map["name"])
 
     @classmethod
