@@ -72,7 +72,7 @@ Summary:
   Slowest:  0.1213 secs.
   Fastest:  0.0033 secs.
   Average:  0.0124 secs.
-  Requests/sec: **8076.7825**
+  Requests/sec: 8076.7825
   Total Data Received:  2800000 bytes.
   Response Size per Request:  28 bytes.
 
@@ -88,7 +88,7 @@ Summary:
   Slowest:  0.1079 secs.
   Fastest:  0.0043 secs.
   Average:  0.0201 secs.
-  Requests/sec: **4963.4166**
+  Requests/sec: 4963.4166
   Total Data Received:  2800000 bytes.
   Response Size per Request:  28 bytes.
 
@@ -104,7 +104,7 @@ Summary:
   Slowest:  0.1668 secs.
   Fastest:  0.0062 secs.
   Average:  0.0197 secs.
-  Requests/sec: **5059.7968**
+  Requests/sec: 5059.7968
   Total Data Received:  2800000 bytes.
   Response Size per Request:  28 bytes.
 
@@ -120,7 +120,7 @@ Summary:
   Slowest:  0.1164 secs.
   Fastest:  0.0001 secs.
   Average:  0.0032 secs.
-  Requests/sec: **31065.6375**
+  Requests/sec: 31065.6375
   Total Data Received:  2700000 bytes.
   Response Size per Request:  27 bytes.
 
@@ -136,7 +136,7 @@ Summary:
   Slowest:  0.1317 secs.
   Fastest:  0.0002 secs.
   Average:  0.0082 secs.
-  Requests/sec: **12125.5973**
+  Requests/sec: 12125.5973
   Total Data Received:  2600000 bytes.
   Response Size per Request:  26 bytes.
 
