@@ -28,6 +28,12 @@ CD into the ```go``` folder and run either ```./start_martini.sh``` or ```./star
 
 CD into the ```nodejs``` folder and run either ```./start_callback.sh```, ```./start_promise.sh``` or ```./start_fiber.sh``` to start the server to benchmark.
 
+## Python
+
+CD into the ```python``` folder and run ```./start_twisted.sh``` to start the server to benchmark.
+
+**Note:** If you are on Mac OS X, and the compile fails because of ```cc```, run the command with prefix ```CC=gcc-4.2```. You will need to install ```gcc-4.2``` by doing ```brew install apple-gcc42```.
+
 ## Running the benchmark
 
 Run ```./bench.sh``` from the root of the repository, and wait for ```boom``` to complete the run.
