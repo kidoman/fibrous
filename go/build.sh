@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash --login
 set -e
 
 go build -o stdlib db.go redis.go user.go apiserver.go stdlib.go
