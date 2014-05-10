@@ -1,5 +1,4 @@
 require('remedial');
-var Q = require('Q');
 var express = require('express');
 var bodyParser = require('body-parser');
 var expressOnFibers = require('./express-on-fibers');
