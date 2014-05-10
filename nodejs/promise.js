@@ -1,5 +1,5 @@
 require('remedial');
-var Q = require('Q');
+var Q = require('q');
 var express = require('express');
 var bodyParser = require('body-parser');
 var client = require('./redis-as-promised');

@@ -1,4 +1,4 @@
-var Q = require('Q');
+var Q = require('q');
 var client = require('./redis-client');
 
 exports.get = Q.nbind(client.get, client);
