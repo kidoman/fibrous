@@ -34,7 +34,7 @@ app.post('/users', function(req, res) {
   var user = new User(body.id, body.name);
   user.save()
   .then(function() {
-    res.send(200);    
+    res.send(200);
   });
 });
 
