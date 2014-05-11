@@ -22,6 +22,10 @@ User.get = function(id) {
   var key = User.prototype.key.call({id: id});
   return client.get(key)
   .then(function(name) {
+    if (name === null) {
+      return null;
+    }
+
     return new User(id, name);
   });
 };
@@ -42,6 +46,10 @@ app.get('/users/:id', function(req, res) {
   var id = req.params.id;
   User.get(id)
   .then(function(user) {
+    if (user === null) {
+      return res.send(404);
+    }
+
     res.send(200, user);
   });
 });

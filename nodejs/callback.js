@@ -25,6 +25,11 @@ User.get = function(id, cb) {
       return;
     }
 
+    if (reply === null) {
+      cb(null, null);
+      return;
+    }
+
     var user = new User(id, reply);
     cb(null, user);
   });
@@ -44,6 +49,14 @@ app.post('/users', function(req, res) {
 app.get('/users/:id', function(req, res) {
   var id = req.params.id;
   User.get(id, function(error, user) {
+    if (error != null) {
+      return res.send(500);
+    }
+
+    if (user === null) {
+      return res.send(404);
+    }
+
     res.send(200, user);
   });
 });

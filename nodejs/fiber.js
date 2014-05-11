@@ -20,7 +20,11 @@ User.prototype.save = function() {
 
 User.get = function(id) {
   var key = User.prototype.key.call({id: id});
-  var name = client.get(key)
+  var name = client.get(key);
+  if (name === null) {
+    return null;
+  }
+
   return new User(id, name);
 };
 
@@ -38,6 +42,10 @@ app.post('/users', function(req, res) {
 app.get('/users/:id', function(req, res) {
   var id = req.params.id;
   var user = User.get(id);
+  if (user === null) {
+    return res.send(404);
+  }
+
   res.send(200, user);
 });
 
