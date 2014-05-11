@@ -39,6 +39,7 @@ func (a *ApiServer) createUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.WriteHeader(http.StatusCreated)
 	fmt.Fprint(w, "OK")
 }
 
