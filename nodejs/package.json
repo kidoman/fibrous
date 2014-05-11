@@ -9,13 +9,14 @@
   "author": "Karan Misra",
   "license": "ISC",
   "dependencies": {
-    "q": "^1.0.1",
+    "body": "^4.4.2",
+    "body-parser": "^1.0.2",
     "express": "^4.1.1",
-    "redis": "^0.10.1",
+    "fibers": "^1.0.1",
     "hiredis": "^0.1.16",
     "lodash": "^2.4.1",
-    "remedial": "^1.0.7",
-    "body-parser": "^1.0.2",
-    "fibers": "^1.0.1"
+    "q": "^1.0.1",
+    "redis": "^0.10.1",
+    "remedial": "^1.0.7"
   }
 }
