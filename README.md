@@ -15,7 +15,7 @@ Soon:
 
 # How to run
 
-I am currently testing the performance of the respective solutions using ```boom```.
+I am currently testing the performance of the respective solutions using ```wrk```.
 
 This requires you to have a valid Go installation and a properly setup ```GOPATH```.
 
@@ -41,17 +41,17 @@ CD into the ```ruby``` folder and run ```./start_sinatra.sh``` to start the serv
 
 ## Running the benchmark
 
-Run ```./bench.sh``` from the root of the repository, and wait for ```boom``` to complete the run.
+Run ```./bench.sh``` from the root of the repository, and wait for ```wrk``` to complete the run.
 
 # Results
 
 We run:
 
 ```
-boom -n 100000 -c 100 http://localhost:3000/users/1
+wrk -c100 -d20s --latency http://127.0.0.1:3000/users/1
 ```
 
-and record the result. 100_000 requests at a concurrency of 100.
+and record the result. 20 seconds of requests at a concurrency of 100.
 
 **Disclaimer:** The code probably could use some cleanup/fixes/optimizations. So the numbers below are only representative until the community gets a chance to look them over.
 
