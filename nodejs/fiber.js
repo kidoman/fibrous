@@ -1,8 +1,18 @@
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
 require('remedial');
 var express = require('express');
 var bodyParser = require('body-parser');
 var expressOnFibers = require('./express-on-fibers');
 var client = require('./redis-on-fibers');
+
+if(cluster.isMaster) {
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  return;
+}
 
 var User = function(id, name) {
   this.id = id;

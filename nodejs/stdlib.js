@@ -1,8 +1,18 @@
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
 require('remedial');
 var http = require('http');
 var url = require('url');
 var jsonBody = require('body/json');
 var client = require('./redis-client');
+
+if(cluster.isMaster) {
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  return;
+}
 
 var User = function(id, name) {
   this.id = id;
