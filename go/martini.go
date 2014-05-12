@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"runtime"
 	"strconv"
 
 	"github.com/go-martini/martini"
@@ -10,6 +11,8 @@ import (
 )
 
 func main() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
+
 	pool := newPool(":6379")
 	defer pool.Close()
 

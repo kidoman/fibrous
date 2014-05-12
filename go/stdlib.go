@@ -1,8 +1,14 @@
 package main
 
-import "net/http"
+import (
+	"runtime"
+
+	"net/http"
+)
 
 func main() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
+
 	pool := newPool(":6379")
 	defer pool.Close()
 
