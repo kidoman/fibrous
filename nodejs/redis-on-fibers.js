@@ -14,7 +14,7 @@ exports.get = function(key) {
     throw err;
   }
   return reply;
-}
+};
 
 exports.set = function(key, value) {
   var err;
@@ -27,4 +27,4 @@ exports.set = function(key, value) {
   if (err != null) {
     throw err;
   }
-}
+};
