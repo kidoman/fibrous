@@ -60,6 +60,7 @@ and record the result. 20 seconds of requests at a concurrency of 100.
 All the following tests are run on the same hardware. The Redis instance is local, so is the test runner. All the servers are geared to use as many cores as they want.
 
 * Golang (stdlib) 134566.47 requests/s *
+* Golang (gorilla) 125091.60 requests/s *
 * nodejs (stdlib) 54510.15 requests/s
 * Golang (martini) 51330.49 requests/s
 * nodejs (callbacks) 36106.59 requests/s
@@ -176,4 +177,22 @@ Running 20s test @ http://127.0.0.1:3000/users/1
   1026622 requests in 20.00s, 145.88MB read
 Requests/sec:  51330.49
 Transfer/sec:      7.29MB
+```
+
+### Go (gorilla)
+
+```
+Running 20s test @ http://127.0.0.1:3000/users/1
+  2 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   818.40us    0.90ms  12.45ms   88.31%
+    Req/Sec    66.44k    13.48k  139.89k    77.40%
+  Latency Distribution
+     50%  485.00us
+     75%    1.08ms
+     90%    1.85ms
+     99%    4.28ms
+  2501826 requests in 20.00s, 343.57MB read
+Requests/sec: 125091.60
+Transfer/sec:     17.18MB
 ```
