@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/garyburd/redigo/redis"
 	"github.com/youtube/vitess/go/pools"
+	"golang.org/x/net/context"
 )
 
 type DB struct {
@@ -23,7 +24,8 @@ func (wc *pooledConn) Close() {
 }
 
 func (db *DB) conn() (*pooledConn, error) {
-	r, err := db.p.Get()
+	ctx := context.Background()
+	r, err := db.p.Get(ctx)
 	if err != nil {
 		return nil, err
 	}

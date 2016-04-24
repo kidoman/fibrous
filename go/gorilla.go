@@ -3,11 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
 	"net/http"
 	"runtime"
 	"strconv"
-
-	"github.com/gorilla/mux"
 )
 
 func main() {
